@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BarberiaPerez_API", "BarberiaPerez_API.csproj", "{5713E506-C4AF-4494-86CB-EA919D1513A4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reserva_Interfaz", "..\Reserva_Interfaz\Reserva_Interfaz.csproj", "{62E706CE-91F8-4E86-B6B4-159E97769B42}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5713E506-C4AF-4494-86CB-EA919D1513A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5713E506-C4AF-4494-86CB-EA919D1513A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5713E506-C4AF-4494-86CB-EA919D1513A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5713E506-C4AF-4494-86CB-EA919D1513A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62E706CE-91F8-4E86-B6B4-159E97769B42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62E706CE-91F8-4E86-B6B4-159E97769B42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62E706CE-91F8-4E86-B6B4-159E97769B42}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{62E706CE-91F8-4E86-B6B4-159E97769B42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62E706CE-91F8-4E86-B6B4-159E97769B42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62E706CE-91F8-4E86-B6B4-159E97769B42}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A7EDA169-0DC3-49AC-BB64-6C94DA52ECE3}
+	EndGlobalSection
+EndGlobal
