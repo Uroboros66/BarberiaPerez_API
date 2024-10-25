@@ -6,23 +6,27 @@ using Microsoft.Extensions.Options;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Cargar la clave JWT desde la configuración de MongoDbSettings
 var key = builder.Configuration.GetSection("MongoDbSettings").GetSection("Token").Value;
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
-{
-    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+// Configuración de autenticación JWT
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
     {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-        ValidIssuer = "https://localhost",
-        ValidAudience = "https://localhost",
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key))
-    };
-});
+        options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = "https://localhost",
+            ValidAudience = "https://localhost",
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key))
+        };
+    });
 
-// Cargar la configuración desde el archivo appsettings.json
+// Cargar la configuración desde el archivo appsettings.json para MongoDB
 builder.Services.Configure<MongoDbSettings>(
     builder.Configuration.GetSection("MongoDbSettings")
 );
@@ -32,53 +36,33 @@ builder.Services.AddSingleton(sp =>
     sp.GetRequiredService<IOptions<MongoDbSettings>>().Value
 );
 
-
-
-
-//var myBuilder = WebApplication.CreateBuilder(args);
-
-//// Registro de servicios
-//myBuilder.Services.AddControllers();
-//myBuilder.Services.AddEndpointsApiExplorer();
-//myBuilder.Services.AddSwaggerGen();
-
-//// Asegúrate de registrar el servicio con el ciclo de vida adecuado (Scoped)
-//myBuilder.Services.AddScoped<IUsuarioService, UsuarioService>();
-
-//var app = myBuilder.Build();
-
-//// Configuración del pipeline
-//if (app.Environment.IsDevelopment())
-//{
-//    app.UseSwagger();
-//    app.UseSwaggerUI();
-//}
-
-//app.UseHttpsRedirection();
-//app.UseAuthorization();
-//app.MapControllers();
-//app.Run();
-
-
-//Registrar IUsuarioService e inyectar UsuarioService
+// Registrar IUsuarioService e inyectar UsuarioService
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 
-// Add services to the container.
-builder.Services.AddControllers();
+// Añadir los controladores
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+        options.JsonSerializerOptions.PropertyNamingPolicy = null); // Para evitar cambiar el formato de nombres en JSON
+
+// Configurar Swagger para documentar la API
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configurar el pipeline HTTP
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
+// Habilitar autenticación y autorización
+app.UseAuthentication();
 app.UseHttpsRedirection();
 app.UseAuthorization();
+
+// Mapear los controladores
 app.MapControllers();
 
-app.Run(); 
+app.Run();

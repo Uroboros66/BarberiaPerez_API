@@ -2,6 +2,7 @@
 using BarberiaPerez_API.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -29,7 +30,7 @@ namespace BarberiaPerez_API.Controllers
 
 
 
-
+        [Authorize]
         [HttpPost("login")]
         public async Task<IActionResult> SignUp([FromBody] UsuarioModel signUpModel)
         {
