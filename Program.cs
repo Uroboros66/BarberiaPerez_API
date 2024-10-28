@@ -1,4 +1,9 @@
 using BarberiaPerez_API.Services;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration.Json;
+using Amazon.Runtime.Internal.Settings;
+using System.Security.Cryptography;
 using BarberiaPerez_API.Settings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;

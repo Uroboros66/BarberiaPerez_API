@@ -1,7 +1,10 @@
 ﻿using BarberiaPerez_API.Models;
 using BarberiaPerez_API.Settings;
 using Microsoft.Extensions.Options;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.Tokens;
 using MongoDB.Driver;
+using MongoDB.Bson;
 using System.Threading.Tasks;
 
 namespace BarberiaPerez_API.Services

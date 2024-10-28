@@ -13,6 +13,7 @@ using System.Text;
 
 namespace BarberiaPerez_API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class UsuarioController : ControllerBase
